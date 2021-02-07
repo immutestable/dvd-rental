@@ -11,7 +11,7 @@ import spock.lang.Specification
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.*
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 class IntegrationSpec extends Specification {
 
     @LocalServerPort

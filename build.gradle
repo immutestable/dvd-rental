@@ -44,5 +44,4 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	integrationTestImplementation 'org.springframework.boot:spring-boot-starter-web'
 	integrationTestCompile ("org.springframework.boot:spring-boot-starter-test")
-
 }
