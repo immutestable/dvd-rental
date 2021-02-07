@@ -14,7 +14,7 @@ public class MoviesController {
         this.movieFacade = movieFacade;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public void create(@RequestBody CreateMovieCommand movieCommand) {
         movieFacade.add(movieCommand);
     }
