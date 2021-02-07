@@ -41,6 +41,7 @@ dependencies {
 	testCompile platform("org.spockframework:spock-bom:2.0-M4-groovy-3.0")
 	testCompile "org.spockframework:spock-core"
 	testCompile "org.spockframework:spock-junit4"
+	integrationTestCompile "org.spockframework:spock-spring"
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	integrationTestImplementation 'org.springframework.boot:spring-boot-starter-web'
 	integrationTestCompile ("org.springframework.boot:spring-boot-starter-test")
