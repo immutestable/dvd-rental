@@ -1,5 +1,6 @@
 package com.immutestable.dvdrental.movies
 
+import com.immutestable.dvdrental.IntegrationSpec
 import com.immutestable.dvdrental.movies.api.MoviesController
 import org.springframework.beans.factory.annotation.Autowired
 
