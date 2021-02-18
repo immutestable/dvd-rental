@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class MovieFacadeBuilder {
 
     @Bean
-    public MovieFacade movieFacade(UsersFacade usersFacade) {
+    public MovieFacade movieFacade() {
         return new MovieFacade(null);
     } // TODO setup real repository
 

@@ -7,7 +7,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -15,9 +14,11 @@ import java.util.List;
 public interface UserRestCrudFacade extends MongoRepository<User, String>, UsersFacade {
 
     @Override
+    @RestResource(exported = false)
     <S extends User> List<S> findAll(Example<S> example);
 
     @Override
+    @RestResource(exported = false)
     <S extends User> List<S> findAll(Example<S> example, Sort sort);
 
     @Override
@@ -29,6 +30,6 @@ public interface UserRestCrudFacade extends MongoRepository<User, String>, Users
     List<User> findByLastName(String name);
 
     @Override
-//    @RestResource(exported = false)
+    @RestResource(exported = false)
     public void delete(User t);
 }
