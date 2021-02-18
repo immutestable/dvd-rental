@@ -20,3 +20,14 @@ These additional references should also help you:
 
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
 
+### IT testing with Spring:
+
+* https://spring.io/blog/2011/06/21/spring-3-1-m2-testing-with-configuration-classes-and-profiles
+* https://www.baeldung.com/spring-boot-embedded-mongodb
+
+
+Start mongo:
+
+```
+
+```

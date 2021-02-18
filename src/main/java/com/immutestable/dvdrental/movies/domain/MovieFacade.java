@@ -2,7 +2,7 @@ package com.immutestable.dvdrental.movies.domain;
 
 import com.immutestable.dvdrental.movies.api.CreateMovieCommand;
 
-public class MovieFacade {
+public class MovieFacade { // TODO Facade should not be in domain?
     private final MoviesRepository repository;
 
     public MovieFacade(MoviesRepository repository) {

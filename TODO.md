@@ -2,9 +2,9 @@
 
 # Movies
 
-* [] integration test
-* [] TODO
-* [] TODO
+* [x] integration test
+* [x] Simple users module
+* [] 
 * [] TODO
 * [] TODO
 * [] TODO
