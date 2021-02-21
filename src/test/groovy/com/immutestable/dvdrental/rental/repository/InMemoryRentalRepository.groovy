@@ -1,4 +1,4 @@
-package com.immutestable.dvdrental.rental
+package com.immutestable.dvdrental.rental.repository
 
 import com.immutestable.dvdrental.rental.domain.RentalRepository
 import com.immutestable.dvdrental.rental.domain.RentedMovies
@@ -8,11 +8,11 @@ class InMemoryRentalRepository implements RentalRepository {
     private Map<String, RentedMovies> rented = [:]
 
     @Override
-    RentedMovies get(String userID) {
+    Optional<RentedMovies> get(String userID) {
         if ( rented.containsKey(userID)) {
-            return rented[userID]
+            return Optional.ofNullable(rented[userID])
         }
-        return new RentedMovies(userID)
+        return Optional.empty()
     }
 
     @Override

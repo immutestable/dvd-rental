@@ -2,8 +2,9 @@ package com.immutestable.dvdrental.rental.domain;
 
 import com.immutestable.dvdrental.movies.domain.MovieFacade;
 import com.immutestable.dvdrental.movies.domain.MovieView;
-import com.immutestable.dvdrental.rental.api.RentalFacade;
 import com.immutestable.dvdrental.users.domain.UsersFacade;
+
+import java.util.Optional;
 
 public class RentalFacadeImpl implements RentalFacade {
 
@@ -18,19 +19,25 @@ public class RentalFacadeImpl implements RentalFacade {
     }
 
     @Override
-    public void rent(String userID, int movieID) {
-        RentedMovies rentedMovies = rentalRepository.get(userID);
-        usersFacade.findById(userID).orElseThrow(() -> new UserNotFoundException(userID));
-
-        MovieView movie = movieFacade.find(movieID);
-        rentedMovies.rentMovie(movie);
-        rentalRepository.save(rentedMovies);
+    public RentedMoviesView getRented(String userID) {
+        return rentsView(rentalRepository.get(userID).orElse(new RentedMovies(userID)));
     }
 
     @Override
-    public RentedMoviesView getRented(String userID) {
-        RentedMovies rentedMovies = rentalRepository.get(userID);
-        return rentsView(rentedMovies);
+    public void rent(String userID, int movieID) {
+        RentedMovies rentedMovies = rentalRepository.get(userID).orElse(new RentedMovies(userID));
+        usersFacade.findById(userID).orElseThrow(() -> new UserNotFoundException(userID));
+
+        MovieView movie = movieFacade.find(movieID);
+        RentedMovies newRentedMovies = rentedMovies.rentMovie(movie);
+        rentalRepository.save(newRentedMovies);
+    }
+
+    @Override
+    public void returnMovie(String userID, int movieID) {
+        RentedMovies rentedMovies = rentalRepository.get(userID).orElse(new RentedMovies(userID));
+        RentedMovies newRentedMovies = rentedMovies.returnMovie(movieID);
+        rentalRepository.save(newRentedMovies);
     }
 
     private RentedMoviesView rentsView(RentedMovies rentedMovies) {

@@ -1,7 +1,9 @@
 package com.immutestable.dvdrental.rental.domain;
 
+import java.util.Optional;
+
 public interface RentalRepository {
-    RentedMovies get(String userID);
+    Optional<RentedMovies> get(String userID);
 
     void save(RentedMovies rentedMovies);
 }

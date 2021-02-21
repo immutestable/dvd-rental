@@ -1,7 +1,6 @@
 package com.immutestable.dvdrental.rental.domain;
 
 import com.immutestable.dvdrental.movies.domain.MovieFacade;
-import com.immutestable.dvdrental.rental.api.RentalFacade;
 import com.immutestable.dvdrental.users.domain.UsersFacade;
 
 public class Initialization {
