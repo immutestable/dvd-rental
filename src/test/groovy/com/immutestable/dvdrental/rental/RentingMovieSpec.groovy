@@ -1,11 +1,10 @@
 package com.immutestable.dvdrental.rental
 
 import com.immutestable.dvdrental.movies.domain.MovieNotFoundException
-import com.immutestable.dvdrental.rental.domain.UserNotFoundException
+import com.immutestable.dvdrental.rental.domain.exceptions.UserNotFoundException
+import com.immutestable.dvdrental.rental.domain.exceptions.MovieAlreadyRented
 
 class RentingMovieSpec extends RentalSpec {
-
-
 
     def "rent a movie"() {
         given:
@@ -22,7 +21,6 @@ class RentingMovieSpec extends RentalSpec {
         rented.size() == 1
     }
 
-
     def "error when renting not-existing movie"() {
         given:
         def moviesFacade = initializeMovies([])
@@ -35,6 +33,7 @@ class RentingMovieSpec extends RentalSpec {
         then:
         thrown(MovieNotFoundException)
     }
+
     def "error when user does not exist"() {
         given:
         def moviesFacade = initializeMovies([movieID])
@@ -48,5 +47,17 @@ class RentingMovieSpec extends RentalSpec {
         thrown(UserNotFoundException)
     }
 
+    def "error when renting same movie twice"() {
+        given:
+        def moviesFacade = initializeMovies([movieID])
+        def usersFacade = initializeUsers([userID])
+        def rentals = RentalTestInitialization.build(moviesFacade, usersFacade)
+        rentals.rent(userID, movieID)
 
+        when:
+        rentals.rent(userID, movieID)
+
+        then:
+        thrown(MovieAlreadyRented)
+    }
 }

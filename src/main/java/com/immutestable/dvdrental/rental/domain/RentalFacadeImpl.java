@@ -2,9 +2,8 @@ package com.immutestable.dvdrental.rental.domain;
 
 import com.immutestable.dvdrental.movies.domain.MovieFacade;
 import com.immutestable.dvdrental.movies.domain.MovieView;
+import com.immutestable.dvdrental.rental.domain.exceptions.UserNotFoundException;
 import com.immutestable.dvdrental.users.domain.UsersFacade;
-
-import java.util.Optional;
 
 public class RentalFacadeImpl implements RentalFacade {
 

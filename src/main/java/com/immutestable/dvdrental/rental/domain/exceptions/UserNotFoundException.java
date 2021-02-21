@@ -1,4 +1,4 @@
-package com.immutestable.dvdrental.rental.domain;
+package com.immutestable.dvdrental.rental.domain.exceptions;
 
 public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException(String userID) {

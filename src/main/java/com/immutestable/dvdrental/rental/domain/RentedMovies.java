@@ -1,6 +1,7 @@
 package com.immutestable.dvdrental.rental.domain;
 
 import com.immutestable.dvdrental.movies.domain.MovieView;
+import com.immutestable.dvdrental.rental.domain.exceptions.MovieAlreadyRented;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,9 +24,16 @@ public class RentedMovies {
     }
 
     public RentedMovies rentMovie(MovieView movie) {
+        if (movieRented(movie.getMovieId())) {
+            throw new MovieAlreadyRented(userID, movie.getTitle());
+        }
         List<RentedMovieView> newRented = new ArrayList<>(rented);
         newRented.add(new RentedMovieView(movie.getMovieId(), movie.getTitle()));
         return new RentedMovies(userID, newRented);
+    }
+
+    private boolean movieRented(int movieID) {
+        return rented.stream().anyMatch(movie -> movie.getMovieId() == movieID);
     }
 
     public String getUserID() {
@@ -33,7 +41,7 @@ public class RentedMovies {
     }
 
     public RentedMovies returnMovie(int movieID) {
-        if ( rented.stream().noneMatch(movie -> movie.getMovieId() == movieID)) {
+        if (!movieRented(movieID)) {
             throw new MovieCannotBeReturnedError(userID, movieID);
         }
         List<RentedMovieView> newRentedMovies = rented.stream().filter(x -> x.getMovieId() != movieID).collect(toList());
