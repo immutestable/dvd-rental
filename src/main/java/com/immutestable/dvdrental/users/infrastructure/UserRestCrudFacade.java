@@ -32,4 +32,6 @@ public interface UserRestCrudFacade extends MongoRepository<User, String>, Users
     @Override
     @RestResource(exported = false)
     public void delete(User t);
+
+
 }

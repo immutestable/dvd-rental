@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class MovieDTO {
+public class MovieView {
+    int movieId;
     String title;
     String genre;
     int productionYear;

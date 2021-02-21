@@ -1,6 +1,9 @@
 package com.immutestable.dvdrental.rental.api;
 
-public class RentalFacade {
-    public void rent(String userID, String movieID) {
-    }
+import com.immutestable.dvdrental.rental.domain.RentedMoviesView;
+
+public interface RentalFacade {
+    void rent(String userID, int movieID);
+
+    RentedMoviesView getRented(String userID);
 }

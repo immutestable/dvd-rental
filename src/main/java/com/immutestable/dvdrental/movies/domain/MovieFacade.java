@@ -17,11 +17,11 @@ public class MovieFacade { // TODO Facade should not be in domain?
                 command.getMinimalAge());
     }
 
-    public MovieDTO find(int movieID) {
-        MovieDTO movieDTO = repository.find(movieID);
-        if (movieDTO == null) {
+    public MovieView find(int movieID) {
+        MovieView movieView = repository.find(movieID);
+        if (movieView == null) {
             throw new MovieNotFoundException(movieID);
         }
-        return movieDTO;
+        return movieView;
     }
 }

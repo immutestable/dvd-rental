@@ -1,21 +1,56 @@
 package com.immutestable.dvdrental.rental
 
-import com.immutestable.dvdrental.movies.Initialization
-import com.immutestable.dvdrental.rental.api.RentalFacade
+import com.immutestable.dvdrental.movies.MoviesInitialization
+import com.immutestable.dvdrental.movies.api.CreateMovieCommand
+import com.immutestable.dvdrental.movies.domain.MovieFacade
+import com.immutestable.dvdrental.users.domain.UsersFacade
 import spock.lang.Specification
 
 class RentalFacadeSpec extends Specification {
 
-    def "should rent a movie"() {
+    String userID = UUID.randomUUID().toString()
+    int movieID = 1
+
+    def "rent a movie"() {
         given:
-        def moviesFacade = Initialization.build()
-//        def usersFacade = new UsersRe
-        rentals = new RentalFacade(moviesFacade, users)
+        def moviesFacade = initializeMovies([movieID])
+
+
+        def usersFacade = Mock(UsersFacade)
+        def rentals = RentalTestInitialization.build(moviesFacade, usersFacade)
+
         when:
-        def rented = rentals.rent()
+        rentals.rent(userID, movieID)
 
         then:
-        1 == 2
+        def rented = rentals.getRented(userID)
+        rented.findMatching({ x -> x.movieId == movieID })*.movieId == [movieID]
+        rented.size() == 1
     }
 
+
+//    def "error when user does not exist"() {
+//        given:
+//
+//        when:
+//
+//        then:
+//    }
+//
+//    def "error when movie does not exist"() {
+//        given:
+//
+//        when:
+//
+//        then:
+//    }
+
+    MovieFacade initializeMovies(List<Integer> integers) {
+        def facade = MoviesInitialization.build()
+        integers.forEach(x -> {
+            def title = UUID.randomUUID().toString()
+            facade.add(new CreateMovieCommand(title, "genre", 2000, 0))
+        })
+        return facade
+    }
 }

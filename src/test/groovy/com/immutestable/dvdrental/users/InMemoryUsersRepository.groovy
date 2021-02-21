@@ -1,7 +1,6 @@
 package com.immutestable.dvdrental.users
 
 
-import com.immutestable.dvdrental.movies.domain.MovieDTO
 import com.immutestable.dvdrental.users.domain.User
 import com.immutestable.dvdrental.users.domain.UsersFacade
 
