@@ -1,6 +1,5 @@
 package com.immutestable.dvdrental.users.domain;
 
-import com.immutestable.dvdrental.users.infrastructure.UserRestCrudFacade;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +14,6 @@ import org.springframework.data.annotation.Id;
 public class User {
 
     @Id
-
     private String id;
     private String firstName;
     private String lastName;

@@ -20,6 +20,8 @@ public class RentalFacadeImpl implements RentalFacade {
     @Override
     public void rent(String userID, int movieID) {
         RentedMovies rentedMovies = rentalRepository.get(userID);
+        usersFacade.findById(userID).orElseThrow(() -> new UserNotFoundException(userID));
+
         MovieView movie = movieFacade.find(movieID);
         rentedMovies.rentMovie(movie);
         rentalRepository.save(rentedMovies);
