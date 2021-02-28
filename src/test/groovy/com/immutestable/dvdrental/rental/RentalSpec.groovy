@@ -7,7 +7,7 @@ import com.immutestable.dvdrental.users.domain.User
 import com.immutestable.dvdrental.users.domain.UsersFacade
 import spock.lang.Specification
 
-class RentalSpec extends Specification{
+class RentalSpec extends Specification {
 
     String userID = UUID.randomUUID().toString()
     int movieID = 1
